@@ -12,19 +12,33 @@ void create(int A[],int n)
     struct Node *t,*last;
     Head=(struct Node *)malloc(sizeof(struct Node));
     Head->data=A[0];
-    Head->next=NULL;
+    Head->next=Head;
     last=Head;
     
     for(i=1;i<n;i++)
     {
         t=(struct Node*)malloc(sizeof(struct Node));
         t->data=A[i];
-        t->next=Head->next;
+        t->next=last->next;
         last->next=t;
         last=t;
-                               
-                               
     }
-    
+}
+void Display(struct Node *h)
+{
+    do
+    {
+        printf("%d ",h->data);
+        h=h->next;
+    }
+    while(h!=Head);
 }
 
+
+int main()
+{
+    int A[]={2,3,4,5,6};
+    create(A,5);
+    Display(Head);
+    return 0;
+}
